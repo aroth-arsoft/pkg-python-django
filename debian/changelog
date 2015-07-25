@@ -40,6 +40,43 @@ python-django (1.8.1-1) experimental; urgency=medium
 
  -- Raphaël Hertzog <hertzog@debian.org>  Wed, 20 May 2015 09:54:47 +0200
 
+python-django (1.7.9-1ubuntu1) wily; urgency=medium
+
+  * Merge with Debian; remaining changes:
+    - debian/patches/99_fix_multipart_base64_decoding_large_files.patch:
+      Fix Multipart base64 file decoding with large files ensuring that the
+      actual base64 content has a length a multiple of 4.
+  * Removed patches included in new version:
+    - debian/patches/fix_sqlite_ftbfs.patch
+    - debian/patches/fix_ftbfs_python2710.patch
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Thu, 09 Jul 2015 07:50:08 -0400
+
+python-django (1.7.9-1) unstable; urgency=medium
+
+  * New upstream security release:
+    https://www.djangoproject.com/weblog/2015/jul/08/security-releases/
+    It fixes:
+    - CVE-2015-5143: possible denial-of-service by filling session store
+    - CVE-2015-5144: possible header injection since validators accept
+      newlines in input
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Thu, 09 Jul 2015 01:33:31 +0200
+
+python-django (1.7.7-1ubuntu1) wily; urgency=medium
+
+  * Merge with Debian; remaining changes:
+    - debian/patches/99_fix_multipart_base64_decoding_large_files.patch:
+      Fix Multipart base64 file decoding with large files ensuring that the
+      actual base64 content has a length a multiple of 4.
+  * Removed patches included in new version:
+    - debian/patches/CVE-2015-2316.patch
+    - debian/patches/CVE-2015-2317.patch
+  * debian/patches/fix_sqlite_ftbfs.patch: fix FTBFS with newer SQLite.
+  * debian/patches/fix_ftbfs_python2710.patch: fix FTBFS with newer python.
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Fri, 26 Jun 2015 08:58:01 -0400
+
 python-django (1.7.7-1) unstable; urgency=high
 
   * New upstream security and bugfix release:
@@ -51,6 +88,30 @@ python-django (1.7.7-1) unstable; urgency=high
       Closes: #780874
 
  -- Raphaël Hertzog <hertzog@debian.org>  Mon, 23 Mar 2015 20:41:13 +0100
+
+python-django (1.7.6-1ubuntu2) vivid; urgency=medium
+
+  * SECURITY UPDATE: denial-of-service possibility with strip_tags
+    - debian/patches/CVE-2015-2316.patch: fix infinite loop possibility
+      in django/utils/html.py, added test to
+      tests/utils_tests/test_html.py.
+    - CVE-2015-2316
+  * SECURITY UPDATE: XSS attack via user-supplied redirect URLs
+    - debian/patches/CVE-2015-2317.patch: reject URLs that start with
+      control characters in django/utils/http.py, added test to
+      tests/utils_tests/test_http.py.
+    - CVE-2015-2317
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Fri, 20 Mar 2015 10:18:12 -0400
+
+python-django (1.7.6-1ubuntu1) vivid; urgency=medium
+
+  * Merge with Debian; remaining changes:
+    - debian/patches/99_fix_multipart_base64_decoding_large_files.patch:
+      Fix Multipart base64 file decoding with large files ensuring that the
+      actual base64 content has a length a multiple of 4.
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Wed, 11 Mar 2015 10:28:41 -0400
 
 python-django (1.7.6-1) unstable; urgency=high
 
@@ -71,6 +132,15 @@ python-django (1.7.5-1) unstable; urgency=medium
     https://docs.djangoproject.com/en/1.7/releases/1.7.5/
 
  -- Raphaël Hertzog <hertzog@debian.org>  Fri, 06 Mar 2015 21:13:54 +0100
+
+python-django (1.7.4-1ubuntu1) vivid; urgency=medium
+
+  * Merge with Debian; remaining changes:
+    - debian/patches/99_fix_multipart_base64_decoding_large_files.patch:
+      Fix Multipart base64 file decoding with large files ensuring that the
+      actual base64 content has a length a multiple of 4.
+
+ -- Matthias Klose <doko@ubuntu.com>  Tue, 03 Mar 2015 20:34:47 +0100
 
 python-django (1.7.4-1) unstable; urgency=medium
 
@@ -202,6 +272,49 @@ python-django (1.7~c1+20140722-1) experimental; urgency=medium
   * Differentiate descriptions of python2 and python3 packages. 
 
  -- Raphaël Hertzog <hertzog@debian.org>  Mon, 21 Jul 2014 21:57:07 +0200
+
+python-django (1.6.6-1ubuntu3) vivid; urgency=medium
+
+  * SECURITY UPDATE: WSGI header spoofing via underscore/dash conflation
+    - debian/patches/CVE-2015-0219.patch: strip headers with underscores in
+      django/core/servers/basehttp.py, added blurb to
+      docs/howto/auth-remote-user.txt, added test to
+      tests/servers/test_basehttp.py.
+    - CVE-2015-0219
+  * SECURITY UPDATE: Mitigated possible XSS attack via user-supplied
+    redirect URLs
+    - debian/patches/CVE-2015-0220.patch: filter url in
+      django/utils/http.py, added test to tests/utils_tests/test_http.py.
+    - CVE-2015-0220
+  * SECURITY UPDATE: Denial-of-service attack against
+    django.views.static.serve
+    - debian/patches/CVE-2015-0221.patch: limit large files in
+      django/views/static.py, added test to
+      tests/view_tests/media/long-line.txt,
+      tests/view_tests/tests/test_static.py.
+    - CVE-2015-0221
+  * SECURITY UPDATE: Database denial-of-service with
+    ModelMultipleChoiceField
+    - debian/patches/CVE-2015-0222.patch: check values in
+      django/forms/models.py, added test to tests/model_forms/tests.py.
+    - CVE-2015-0222
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Tue, 13 Jan 2015 07:32:43 -0500
+
+python-django (1.6.6-1ubuntu2) utopic; urgency=medium
+
+  * debian/patches/fix_test_encoding.patch: Fix test encoding headers,
+    otherwise it FTBFS.
+
+ -- Andres Rodriguez <andreserl@ubuntu.com>  Thu, 18 Sep 2014 19:01:13 -0500
+
+python-django (1.6.6-1ubuntu1) utopic; urgency=medium
+
+  * debian/patches/99_fix_multipart_base64_decoding_large_files.patch:
+    Fix Multipart base64 file decoding with large files ensuring that the
+    actual base64 content has a length a multiple of 4. (LP: #1363348)
+
+ -- Andres Rodriguez <andreserl@ubuntu.com>  Thu, 18 Sep 2014 17:37:57 -0500
 
 python-django (1.6.6-1) unstable; urgency=high
 

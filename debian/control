@@ -1,7 +1,8 @@
 Source: python-django
 Section: python
 Priority: optional
-Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
 Uploaders: Luke Faraone <lfaraone@debian.org>,
  Raphaël Hertzog <hertzog@debian.org>,
  Brian May <bam@debian.org>
