@@ -1,6 +1,7 @@
 #!/usr/bin/make -f
 
 export PYBUILD_NAME=django
+export LC_ALL=C.UTF-8
 
 PREFIX = debian/python-django
 PREFIX3 = debian/python3-django
