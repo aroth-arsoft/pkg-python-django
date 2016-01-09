@@ -1,8 +1,90 @@
-python-django (1.8.3-1ubuntu0.1~aroth~ppa1) vivid; urgency=medium
+python-django (1.8.7-1ubuntu1.4) wily; urgency=medium
 
-  * bring latest version to ubuntu
+  * fixed build
 
- -- Andreas Roth <aroth@arsoft-online.com>  Sat, 25 Jul 2015 11:34:20 +0200
+ -- Andreas Roth <aroth@arsoft-online.com>  Sat, 09 Jan 2016 12:18:40 +0100
+
+python-django (1.8.7-1ubuntu1.3) wily; urgency=medium
+
+  * remove python3 from precise package
+
+ -- Andreas Roth <aroth@arsoft-online.com>  Sat, 09 Jan 2016 11:54:40 +0100
+
+python-django (1.8.7-1ubuntu1.2) wily; urgency=medium
+
+  * build precise package without python3
+
+ -- Andreas Roth <aroth@arsoft-online.com>  Sat, 09 Jan 2016 11:06:46 +0100
+
+python-django (1.8.7-1ubuntu1.1) wily; urgency=medium
+
+  * backport latest django 1.8 version
+
+ -- Andreas Roth <aroth@arsoft-online.com>  Sat, 09 Jan 2016 10:03:12 +0100
+
+python-django (1.8.7-1ubuntu1) xenial; urgency=medium
+
+  * Merge from Debian unstable. Remaining changes:
+    - debian/patches/pymysql-replacement.patch: Use pymysql as drop in
+      replacement for MySQLdb.
+    - debian/control: Drop python-mysqldb in favor of python-pymysql.
+  * Dropped changes:
+    - debian/patches/99_skip_tests_due_python35.diff: no longer required, 
+      python 3.5 is now officially supported in 1.8.6+.
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Wed, 25 Nov 2015 07:08:03 -0500
+
+python-django (1.8.7-1) unstable; urgency=high
+
+  * New upstream security release:
+    https://www.djangoproject.com/weblog/2015/nov/24/security-releases-issued/
+    It fixes:
+    - CVE-2015-8213: settings leak possibility in date template filter
+
+ -- Luke Faraone <lfaraone@debian.org>  Wed, 25 Nov 2015 04:24:27 +0000
+
+python-django (1.8.6-1) unstable; urgency=medium
+
+  * New upstream bugfix release.
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Sun, 15 Nov 2015 18:29:11 +0100
+
+python-django (1.8.5-2ubuntu1) xenial; urgency=low
+
+  * Merge from Debian unstable.  Remaining changes:
+    - debian/patches/pymysql-replacement.patch: Use pymysql as drop in
+      replacement for MySQLdb.
+    - debian/control: Drop python-mysqldb in favor of python-pymysql.
+  * Drop 99_fix_multipart_base64_decoding_large_files.patch: This patch
+    has been merged upstream.
+  * Drop CVE-2015-596x.patch: Merged upstream.
+  * Drop 0004-Added-a-dummy-class-for-HTMLParserError.patch: This patch
+    originally came from upstream. It is part of 1.8.
+
+ -- Andres Rodriguez <andreserl@ubuntu.com>  Tue, 10 Nov 2015 17:45:37 +0000
+
+python-django (1.8.5-2) unstable; urgency=medium
+
+  * Upload to unstable.
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Mon, 02 Nov 2015 15:56:10 +0100
+
+python-django (1.8.5-1) experimental; urgency=medium
+
+  * New upstream bugfix release:
+    https://www.djangoproject.com/weblog/2015/oct/03/bugfix-release-issued/
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Tue, 13 Oct 2015 11:37:24 +0200
+
+python-django (1.8.4-1) experimental; urgency=medium
+
+  * New upstream security release:
+    https://www.djangoproject.com/weblog/2015/aug/18/security-releases/
+    It fixes:
+    - CVE-2015-5964: possible denial-of-service in logout() view
+  * Update debian/copyright to copyright-format 1.0.
+
+ -- Luke Faraone <lfaraone@debian.org>  Wed, 19 Aug 2015 03:55:47 +0000
 
 python-django (1.8.3-1) experimental; urgency=medium
 
@@ -45,6 +127,51 @@ python-django (1.8.1-1) experimental; urgency=medium
     shorter than usual).
 
  -- Raphaël Hertzog <hertzog@debian.org>  Wed, 20 May 2015 09:54:47 +0200
+
+python-django (1.7.10-1) unstable; urgency=medium
+
+  * Fix Python 3.5 HTMLParseError issue. Closes: #800137.
+  * New upstream version. Fixes CVE-2015-5963, CVE-2015-5964. Closes: #796104.
+  * Add numpy 1.9 support. Closes: #801554.
+
+ -- Brian May <bam@debian.org>  Mon, 12 Oct 2015 12:59:43 +1100
+
+python-django (1.7.9-1ubuntu5) wily; urgency=medium
+
+  * d/p/0004-Added-a-dummy-class-for-HTMLParserError.patch: cherry-pick from
+    Debian 1.7.10-1 (which was cherry-picked from upstream) to fix FTBFS of
+    some reverse dependencies such as python-jingo. This partially restores an
+    API accidentally lost by the transition to Python 3.5 so may also fix other
+    yet-unknown runtime bugs in dependent packages.
+
+ -- Robie Basak <robie.basak@ubuntu.com>  Tue, 20 Oct 2015 13:15:00 +0000
+
+python-django (1.7.9-1ubuntu4) wily; urgency=medium
+
+  * debian/patches/pymysql-replacement.patch: Use pymysql as drop in
+    replacement for MySQLdb.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Tue, 25 Aug 2015 15:06:09 -0400
+
+python-django (1.7.9-1ubuntu3) wily; urgency=medium
+
+  * debian/control: Drop python-mysqldb in favor of python-pymysql.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Mon, 24 Aug 2015 11:01:47 -0400
+
+python-django (1.7.9-1ubuntu2) wily; urgency=medium
+
+  * SECURITY UPDATE: denial of service by filling session store
+    - debian/patches/CVE-2015-596x.patch: don't create empty sessions in
+      django/contrib/sessions/backends/base.py,
+      django/contrib/sessions/backends/cached_db.py,
+      django/contrib/sessions/middleware.py, added tests to
+      django/contrib/sessions/tests.py, updated docs in
+      docs/topics/http/sessions.txt. 
+    - CVE-2015-5963
+    - CVE-2015-5964
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Thu, 20 Aug 2015 15:59:13 -0400
 
 python-django (1.7.9-1ubuntu1) wily; urgency=medium
 
@@ -1191,3 +1318,4 @@ python-django (0.95-1) unstable; urgency=low
     work around bug #391689 of python-support).
 
  -- Raphael Hertzog <hertzog@debian.org>  Mon,  9 Oct 2006 12:10:27 +0200
+
